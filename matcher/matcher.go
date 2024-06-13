@@ -36,7 +36,7 @@ type regexPatternMatcher struct {
 
 func (pm *regexPatternMatcher) Matches(input string) bool {
 	if pm.regularExpressions == nil || len(pm.regularExpressions) == 0 {
-		return true
+		return false
 	}
 	for _, regularExpression := range pm.regularExpressions {
 		if regularExpression.MatchString(input) {
