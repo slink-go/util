@@ -18,6 +18,13 @@ func String(key string) (string, error) {
 	}
 	return result, nil
 }
+func StringMust(key string) string {
+	result := os.Getenv(key)
+	if result == "" {
+		panic(fmt.Errorf("%s must be set", key))
+	}
+	return result
+}
 func StringWithPrefix(key, prefix string) (string, error) {
 	result := os.Getenv(key)
 	if result == "" {
