@@ -9,10 +9,10 @@ import (
 	"time"
 )
 
-func HandleSigInt(duration time.Duration) {
+func HandleStopSignal(duration time.Duration) {
 	go func() {
 		qc := make(chan os.Signal)
-		signal.Notify(qc, syscall.SIGINT)
+		signal.Notify(qc, syscall.SIGINT, syscall.SIGTERM, syscall.SIGKILL)
 		for _ = range qc {
 			fmt.Print("\r")
 			logging.GetLogger("util").Trace("handle SIGINT")
