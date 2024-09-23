@@ -30,6 +30,7 @@ type Claims interface {
 type Jwt interface {
 	Generate(issuer, tenant string, duration time.Duration, fields ...string) (string, error)
 	Validate(token string) (Claims, error)
+	GetClaims(token string) (Claims, error)
 }
 
 func Init(secret string) (Jwt, error) {
@@ -123,6 +124,15 @@ func (j *jwtImpl) Validate(token string) (Claims, error) {
 		return nil, ErrInvalidToken
 	}
 	return payload, nil
+}
+func (j *jwtImpl) GetClaims(token string) (Claims, error) {
+	p := jwt.Parser{}
+	cl := tokenPayload{}
+	_, _, err := p.ParseUnverified(token, &cl)
+	if err != nil {
+		return nil, err
+	}
+	return &cl, nil
 }
 
 func (j *jwtImpl) newPayload(issuer, tenant string, duration time.Duration) (*tokenPayload, error) {
