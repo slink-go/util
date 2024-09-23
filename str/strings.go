@@ -3,6 +3,7 @@ package str
 import (
 	"fmt"
 	"math/rand"
+	"sort"
 	"strings"
 )
 
@@ -55,4 +56,22 @@ func Random(n int) string {
 	}
 
 	return string(b)
+}
+
+func LongestCommonPrefix(input []string) string {
+	var longestPrefix string = ""
+	var endPrefix = false
+	if len(input) > 0 {
+		sort.Strings(input)
+		first := string(input[0])
+		last := string(input[len(input)-1])
+		for i := 0; i < len(first); i++ {
+			if !endPrefix && string(last[i]) == string(first[i]) {
+				longestPrefix += string(last[i])
+			} else {
+				endPrefix = true
+			}
+		}
+	}
+	return longestPrefix
 }
