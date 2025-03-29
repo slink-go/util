@@ -2,7 +2,7 @@ package util
 
 import (
 	"fmt"
-	"github.com/slink-go/logging"
+	"go.slink.ws/logging"
 	"os"
 	"os/signal"
 	"syscall"

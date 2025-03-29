@@ -2,9 +2,9 @@ package env
 
 import (
 	"fmt"
-	"github.com/slink-go/logging"
-	"github.com/slink-go/util/str"
 	"github.com/xhit/go-str2duration/v2"
+	"go.slink.ws/logging"
+	"go.slink.ws/util/str"
 	"os"
 	"strconv"
 	"strings"

@@ -1,15 +1,13 @@
-module github.com/slink-go/util
+module go.slink.ws/util
 
-go 1.22.3
-
-toolchain go1.22.4
+go 1.24.0
 
 require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/uuid v1.6.0
-	github.com/slink-go/logging v0.0.2
 	github.com/stretchr/testify v1.9.0
 	github.com/xhit/go-str2duration/v2 v2.1.0
+	go.slink.ws/logging v0.0.5
 )
 
 require (
