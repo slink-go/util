@@ -53,6 +53,17 @@ func BoolOrDefault(key string, defaultValue bool) bool {
 	}
 	return result
 }
+func Float64OrDefault(key string, defaultValue float64) float64 {
+	variable := os.Getenv(key)
+	if variable == "" {
+		return defaultValue
+	}
+	result, err := strconv.ParseFloat(variable, 64)
+	if err != nil {
+		return -1
+	}
+	return result
+}
 func Int64OrDefault(key string, defaultValue int64) int64 {
 	variable := os.Getenv(key)
 	if variable == "" {
