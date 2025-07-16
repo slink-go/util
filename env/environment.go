@@ -64,6 +64,17 @@ func Float64OrDefault(key string, defaultValue float64) float64 {
 	}
 	return result
 }
+func Int64(key string) int64 {
+	variable := os.Getenv(key)
+	if variable == "" {
+		panic(fmt.Sprintf("environment variable %s is empty", key))
+	}
+	result, err := strconv.ParseInt(variable, 10, 64)
+	if err != nil {
+		return -1
+	}
+	return result
+}
 func Int64OrDefault(key string, defaultValue int64) int64 {
 	variable := os.Getenv(key)
 	if variable == "" {
@@ -74,6 +85,17 @@ func Int64OrDefault(key string, defaultValue int64) int64 {
 		return -1
 	}
 	return result
+}
+func IntMust(key string) int {
+	variable := os.Getenv(key)
+	if variable == "" {
+		panic(fmt.Sprintf("environment variable %s is empty", key))
+	}
+	result, err := strconv.ParseInt(variable, 10, 64)
+	if err != nil {
+		return -1
+	}
+	return int(result)
 }
 func DurationOrDefault(key string, defaultValue time.Duration) time.Duration {
 	variable := os.Getenv(key)
