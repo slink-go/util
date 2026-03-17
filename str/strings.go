@@ -2,6 +2,7 @@ package str
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"sort"
 	"strings"
@@ -74,4 +75,11 @@ func LongestCommonPrefix(input []string) string {
 		}
 	}
 	return longestPrefix
+}
+
+func Masked(input string, maxLength int) string {
+	if input == "" {
+		return ""
+	}
+	return strings.Repeat("*", int(math.Min(float64(len(input)), float64(maxLength))))
 }
