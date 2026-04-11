@@ -86,6 +86,17 @@ func Int64OrDefault(key string, defaultValue int64) int64 {
 	}
 	return result
 }
+func IntOrDefault(key string, defaultValue int) int {
+	variable := os.Getenv(key)
+	if variable == "" {
+		return defaultValue
+	}
+	result, err := strconv.ParseInt(variable, 10, 64)
+	if err != nil {
+		return -1
+	}
+	return int(result)
+}
 func IntMust(key string) int {
 	variable := os.Getenv(key)
 	if variable == "" {
@@ -117,4 +128,15 @@ func StringArrayOrEmpty(key string) []string {
 	} else {
 		return make([]string, 0)
 	}
+}
+func DateOrDefault(key string, format string, defaultValue string) time.Time {
+	variable := os.Getenv(key)
+	if variable == "" {
+		variable = defaultValue
+	}
+	t, err := time.Parse(format, variable)
+	if err != nil {
+		panic(fmt.Errorf("error parsing date: %w", err))
+	}
+	return t
 }
