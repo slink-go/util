@@ -34,6 +34,9 @@ func (d Date) Sub(t Date) time.Duration {
 func (d Date) Format(layout string) string {
 	return d.Time.Format(layout)
 }
+func (d Date) Equal(other Date) bool {
+	return d.Year() == other.Year() && d.Month() == other.Month() && d.Day() == other.Day()
+}
 
 func New(year int, month time.Month, day int) Date {
 	return Date{time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)}

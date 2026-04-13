@@ -6,6 +6,8 @@ import (
 	"math/rand"
 	"sort"
 	"strings"
+	"unicode"
+	"unicode/utf8"
 )
 
 func Slice(input string, split string) []string {
@@ -82,4 +84,24 @@ func Masked(input string, maxLength int) string {
 		return ""
 	}
 	return strings.Repeat("*", int(math.Min(float64(len(input)), float64(maxLength))))
+}
+
+func Capitalize(s string) string {
+	if s == "" {
+		return ""
+	}
+	r, size := utf8.DecodeRuneInString(s)
+	return string(unicode.ToUpper(r)) + s[size:]
+}
+func CapitalizeWords(s string) string {
+	words := strings.Fields(s) // Разбивает по пробелам
+	for i, word := range words {
+		if word == "" {
+			continue
+		}
+		// Берем первую руну и остаток слова
+		r, size := utf8.DecodeRuneInString(word)
+		words[i] = string(unicode.ToUpper(r)) + word[size:]
+	}
+	return strings.Join(words, " ")
 }
