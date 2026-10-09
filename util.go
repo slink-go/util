@@ -11,7 +11,7 @@ import (
 
 func HandleStopSignal(duration time.Duration) {
 	go func() {
-		qc := make(chan os.Signal)
+		qc := make(chan os.Signal, 1)
 		signal.Notify(qc, syscall.SIGINT, syscall.SIGTERM, syscall.SIGKILL)
 		for _ = range qc {
 			fmt.Print("\r")

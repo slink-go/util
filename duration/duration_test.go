@@ -10,7 +10,7 @@ func TestDurationMarshalling(t *testing.T) {
 	var duration = Duration(5 * time.Second)
 	b, err := json.Marshal(duration)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%s", err.Error())
 	}
 	res := string(b)
 	if res != `"5s"` {
@@ -21,7 +21,7 @@ func TestDurationPtrMarshalling(t *testing.T) {
 	var duration = Duration(5 * time.Second)
 	b, err := json.Marshal(&duration)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%s", err.Error())
 	}
 	res := string(b)
 	if res != `"5s"` {
@@ -33,7 +33,7 @@ func TestDurationUnmarshalling(t *testing.T) {
 	var duration Duration
 	err := json.Unmarshal([]byte(value), &duration)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%s", err.Error())
 	}
 	if duration != Duration(5*time.Second) {
 		t.Fatalf("expected Duration('5s'), got '%v'", duration)
@@ -45,7 +45,7 @@ func TestDurationPtrUnmarshalling(t *testing.T) {
 	var durationPtr = &duration
 	err := json.Unmarshal([]byte(value), durationPtr)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%s", err.Error())
 	}
 	if *durationPtr != Duration(5*time.Second) {
 		t.Fatalf("expected Duration('5s'), got '%v'", duration)
